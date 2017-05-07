@@ -1,0 +1,643 @@
+{
+  "templates": [
+    "@sys.time:time es el @Event:Event ",
+    "Que @Event:Event hay para @sys.date:date ",
+    "Que @Event:Event  @sys.geo-city:geo-city  @sys.date:date ",
+    "Cuales son los @Event:Event  @sys.date:date ",
+    "@Event:Event ",
+    "Cuales son los @Event:Event  @sys.date-period:date-period ",
+    "Cuales son los @Event:Event  @sys.date-period:date-period ",
+    "@sys.time:time es @Event:Event ",
+    "@sys.time:time es @Event:Event ",
+    "Que @sys.date:date va ser @Event:Event ",
+    "@sys.time:time va a ser @Event:Event ",
+    "@sys.time:time va a ser @Event:Event ",
+    " @sys.time:time va a ser @Event:Event ",
+    " Cuando va a ser Full-stackNight",
+    "Que @sys.time:time va a ser @Event:Event ",
+    "@sys.time:time es @Event:Event ",
+    "En que @sys.date-period:date-period es @Event:Event ",
+    "@sys.time:time es @Event:Event ",
+    "@sys.time:time es @Event:Event ",
+    "Que @Event:Event  @sys.geo-city:geo-city  @sys.date-period:date-period ",
+    "Que puedo hacer @sys.date-period:date-period ",
+    "Que @Event:Event  @sys.geo-city:geo-city  @sys.date:date ",
+    "Que @Event:Event  @sys.geo-city:geo-city  @sys.date:date "
+  ],
+  "userSays": [
+    {
+      "id": "55d067ab-29eb-4485-9777-efe9fe61e9cb",
+      "data": [
+        {
+          "text": "Cuando",
+          "alias": "time",
+          "meta": "@sys.time",
+          "userDefined": true
+        },
+        {
+          "text": " es el "
+        },
+        {
+          "text": "IOT",
+          "alias": "Event",
+          "meta": "@Event",
+          "userDefined": true
+        }
+      ],
+      "isTemplate": false,
+      "count": 1
+    },
+    {
+      "id": "e14d9359-419b-491e-929a-0f975abf5c51",
+      "data": [
+        {
+          "text": "Que "
+        },
+        {
+          "text": "eventos",
+          "alias": "Event",
+          "meta": "@Event",
+          "userDefined": true
+        },
+        {
+          "text": " hay para "
+        },
+        {
+          "text": "hoy",
+          "alias": "date",
+          "meta": "@sys.date",
+          "userDefined": true
+        }
+      ],
+      "isTemplate": false,
+      "count": 0
+    },
+    {
+      "id": "94117d82-40ad-46b3-b31d-d78bc3270f4b",
+      "data": [
+        {
+          "text": "Que "
+        },
+        {
+          "text": "eventos",
+          "alias": "Event",
+          "meta": "@Event",
+          "userDefined": true
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "hay",
+          "alias": "geo-city",
+          "meta": "@sys.geo-city",
+          "userDefined": false
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "para hoy",
+          "alias": "date",
+          "meta": "@sys.date",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 2
+    },
+    {
+      "id": "0f81ab9c-c260-4688-a965-c2822b120d8a",
+      "data": [
+        {
+          "text": "Cuales son los "
+        },
+        {
+          "text": "eventos",
+          "alias": "Event",
+          "meta": "@Event",
+          "userDefined": true
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "para hoy",
+          "alias": "date",
+          "meta": "@sys.date"
+        }
+      ],
+      "isTemplate": false,
+      "count": 1
+    },
+    {
+      "id": "40cde07a-8dda-45a3-be44-78168e308936",
+      "data": [
+        {
+          "text": "Hack-Night",
+          "alias": "Event",
+          "meta": "@Event"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0
+    },
+    {
+      "id": "6f680fa3-11c6-4c21-93fa-a2b0eec98460",
+      "data": [
+        {
+          "text": "Cuales son los "
+        },
+        {
+          "text": "eventos",
+          "alias": "Event",
+          "meta": "@Event",
+          "userDefined": true
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "para esta semana",
+          "alias": "date-period",
+          "meta": "@sys.date-period"
+        }
+      ],
+      "isTemplate": false,
+      "count": 1
+    },
+    {
+      "id": "06e36c30-8b17-493a-8cde-c2cc96023143",
+      "data": [
+        {
+          "text": "Cuales son los "
+        },
+        {
+          "text": "eventos",
+          "alias": "Event",
+          "meta": "@Event",
+          "userDefined": true
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "para este mes",
+          "alias": "date-period",
+          "meta": "@sys.date-period"
+        }
+      ],
+      "isTemplate": false,
+      "count": 1
+    },
+    {
+      "id": "aeaf06f2-060d-4d54-a2c8-a16bff6587da",
+      "data": [
+        {
+          "text": "cuando",
+          "alias": "time",
+          "meta": "@sys.time"
+        },
+        {
+          "text": " es "
+        },
+        {
+          "text": "Hack-Night",
+          "alias": "Event",
+          "meta": "@Event"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0
+    },
+    {
+      "id": "b380a0b4-8c0b-49f9-9ac5-868373c2c8bd",
+      "data": [
+        {
+          "text": "cuando",
+          "alias": "time",
+          "meta": "@sys.time"
+        },
+        {
+          "text": " es "
+        },
+        {
+          "text": "hackNight",
+          "alias": "Event",
+          "meta": "@Event"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0
+    },
+    {
+      "id": "38d0c0dd-97b0-4181-83a6-cbf542fa0088",
+      "data": [
+        {
+          "text": "Que "
+        },
+        {
+          "text": "dia",
+          "alias": "date",
+          "meta": "@sys.date",
+          "userDefined": true
+        },
+        {
+          "text": " va ser "
+        },
+        {
+          "text": "hack-night",
+          "alias": "Event",
+          "meta": "@Event",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0
+    },
+    {
+      "id": "4b30ffaf-4a81-4cb4-9870-f3656894373a",
+      "data": [
+        {
+          "text": "Cuando",
+          "alias": "time",
+          "meta": "@sys.time"
+        },
+        {
+          "text": " va a ser "
+        },
+        {
+          "text": "Full-stackNight",
+          "alias": "Event",
+          "meta": "@Event"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0
+    },
+    {
+      "id": "66f08b6c-d201-4f11-a23b-f18c9e7776ca",
+      "data": [
+        {
+          "text": "cuando",
+          "alias": "time",
+          "meta": "@sys.time",
+          "userDefined": true
+        },
+        {
+          "text": " va a ser "
+        },
+        {
+          "text": "Full-stackNight",
+          "alias": "Event",
+          "meta": "@Event",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0
+    },
+    {
+      "id": "14718411-1a9d-4203-bc04-becfc29d3713",
+      "data": [
+        {
+          "text": " "
+        },
+        {
+          "text": "Cuando",
+          "alias": "time",
+          "meta": "@sys.time",
+          "userDefined": true
+        },
+        {
+          "text": " va a ser "
+        },
+        {
+          "text": "FullStackNight",
+          "alias": "Event",
+          "meta": "@Event",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0
+    },
+    {
+      "id": "b35bae24-bd48-45ec-9f5a-fe845f85403b",
+      "data": [
+        {
+          "text": " Cuando va a ser Full-stackNight"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0
+    },
+    {
+      "id": "03aaafaa-1e73-4421-8184-5bfe25f2467e",
+      "data": [
+        {
+          "text": "Que "
+        },
+        {
+          "text": "día",
+          "alias": "time",
+          "meta": "@sys.time",
+          "userDefined": true
+        },
+        {
+          "text": " va a ser "
+        },
+        {
+          "text": "hack-night",
+          "alias": "Event",
+          "meta": "@Event",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0
+    },
+    {
+      "id": "c143d035-e7fb-4de7-9d33-406b45789bfd",
+      "data": [
+        {
+          "text": "Cuando",
+          "alias": "time",
+          "meta": "@sys.time",
+          "userDefined": true
+        },
+        {
+          "text": " es "
+        },
+        {
+          "text": "Iot-Lab",
+          "alias": "Event",
+          "meta": "@Event",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0
+    },
+    {
+      "id": "41318079-7f19-4dcc-8a66-e8965e930330",
+      "data": [
+        {
+          "text": "En que "
+        },
+        {
+          "text": "mes",
+          "alias": "date-period",
+          "meta": "@sys.date-period",
+          "userDefined": false
+        },
+        {
+          "text": " es "
+        },
+        {
+          "text": "hack-Night",
+          "alias": "Event",
+          "meta": "@Event",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0
+    },
+    {
+      "id": "86f1ed9b-ee66-4327-a095-14ad43cd2550",
+      "data": [
+        {
+          "text": "Cuando",
+          "alias": "time",
+          "meta": "@sys.time",
+          "userDefined": true
+        },
+        {
+          "text": " es "
+        },
+        {
+          "text": "hackNight",
+          "alias": "Event",
+          "meta": "@Event",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 1
+    },
+    {
+      "id": "3f7bb8d2-f7a4-47e2-92a4-e691f75282a5",
+      "data": [
+        {
+          "text": "Cuando",
+          "alias": "time",
+          "meta": "@sys.time",
+          "userDefined": true
+        },
+        {
+          "text": " es "
+        },
+        {
+          "text": "Hack-Night",
+          "alias": "Event",
+          "meta": "@Event",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0
+    },
+    {
+      "id": "69ce95ba-72f3-4ba8-a139-e67a21b77c70",
+      "data": [
+        {
+          "text": "Que "
+        },
+        {
+          "text": "eventos",
+          "alias": "Event",
+          "meta": "@Event",
+          "userDefined": true
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "hay",
+          "alias": "geo-city",
+          "meta": "@sys.geo-city",
+          "userDefined": false
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "para este mes",
+          "alias": "date-period",
+          "meta": "@sys.date-period",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0
+    },
+    {
+      "id": "04863665-0289-4f13-a3ff-c4cff134be38",
+      "data": [
+        {
+          "text": "Que puedo hacer "
+        },
+        {
+          "text": "la semana que viene",
+          "alias": "date-period",
+          "meta": "@sys.date-period",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0
+    },
+    {
+      "id": "76e3bc2d-4568-4861-9b7b-fadb8889d168",
+      "data": [
+        {
+          "text": "Que "
+        },
+        {
+          "text": "actividades",
+          "alias": "Event",
+          "meta": "@Event",
+          "userDefined": true
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "hay",
+          "alias": "geo-city",
+          "meta": "@sys.geo-city",
+          "userDefined": false
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "para hoy",
+          "alias": "date",
+          "meta": "@sys.date",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 1
+    },
+    {
+      "id": "1da5d5ca-98a5-4338-b7f6-18e12c8946cd",
+      "data": [
+        {
+          "text": "Que "
+        },
+        {
+          "text": "eventos",
+          "alias": "Event",
+          "meta": "@Event",
+          "userDefined": true
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "hay",
+          "alias": "geo-city",
+          "meta": "@sys.geo-city",
+          "userDefined": false
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "para mañana",
+          "alias": "date",
+          "meta": "@sys.date",
+          "userDefined": false
+        }
+      ],
+      "isTemplate": false,
+      "count": 0
+    }
+  ],
+  "id": "98968e30-09e0-4bb0-ad0a-038903ae35f7",
+  "name": "Calendar-event",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "Google-Eventos",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "dataType": "@sys.date-period",
+          "name": "date-period",
+          "value": "$date-period",
+          "isList": false
+        },
+        {
+          "dataType": "@sys.geo-city",
+          "name": "geo-city",
+          "value": "$geo-city",
+          "isList": false
+        },
+        {
+          "dataType": "@sys.date",
+          "name": "date",
+          "value": "$date",
+          "isList": false
+        },
+        {
+          "dataType": "@Event",
+          "name": "Event",
+          "value": "$Event",
+          "isList": false
+        },
+        {
+          "dataType": "@sys.time",
+          "name": "time",
+          "value": "$time",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "platform": "slack",
+          "speech": "El evento de Hack-Night es todos los miércoles"
+        },
+        {
+          "type": 0,
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": [
+        "slack"
+      ]
+    }
+  ],
+  "priority": 500000,
+  "cortanaCommand": {
+    "navigateOrService": "NAVIGATE",
+    "target": ""
+  },
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [
+    {
+      "name": "Hack-Night"
+    },
+    {
+      "name": "IOT"
+    }
+  ]
+}

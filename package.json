@@ -1,0 +1,20 @@
+{
+  "name": "bot",
+  "version": "1.0.0",
+  "description": "This is a bot for the codetrotter slack team ",
+  "main": "Bot.js",
+  "scripts": {
+    "start": "node Bot.js "
+  },
+  "keywords": [
+    "Bot",
+    "Codetrotters",
+    "SlackBot"
+  ],
+  "author": "Christian Nogueras Rosado",
+  "license": "MIT",
+  "dependencies": {
+    "botkit": "^0.5.4",
+    "botkit-middleware-apiai": "^0.1.1"
+  }
+}

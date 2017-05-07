@@ -61,6 +61,7 @@ var calendar_event_template = require('./Calendar-event');
 console.log(calendar_event_template.templates[0]);
 
 var app = apiai("acbaa2a1dc224492be9e3a55548f503a");
+console.log("hello heroku");
 // var responseAPI = response.result.parameters
 //
 // var request = app.textRequest("cuantos eventos hay para hoy", {

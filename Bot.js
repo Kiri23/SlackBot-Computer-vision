@@ -585,3 +585,17 @@ controller.hears('menu', ['direct_mention','direct_message'], function(bot, mess
         );
 
 });
+
+
+// SImple server para que funcione en heroku el bot
+
+var express = require('express')
+var app = express()
+
+app.get('/', function (req, res) {
+  res.send('Hello World!')
+})
+
+app.listen(process.env.port || 5000, function () {
+  console.log('Example app listening on port 5000!')
+})

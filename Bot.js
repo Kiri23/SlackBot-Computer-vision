@@ -62,12 +62,13 @@ var calendar_event_template = require('./Calendar-event');
 
 var app = apiai("acbaa2a1dc224492be9e3a55548f503a");
 console.log("hello heroku");
+// console.log(app);
 // var responseAPI = response.result.parameters
 //
 // var request = app.textRequest("cuantos eventos hay para hoy", {
 //     sessionId: '<unique session id>'
 // });
-//
+// console.log(request);
 //
 // request.on('response', function(response) {
 //   var responseAPI = response.result.parameters
@@ -90,7 +91,7 @@ console.log("hello heroku");
 // request.on('error', function(error) {
 //    console.log(error);
 // });
-//
+// //
 // request.end();
 
 
@@ -590,12 +591,12 @@ controller.hears('menu', ['direct_mention','direct_message'], function(bot, mess
 // SImple server para que funcione en heroku el bot
 
 var express = require('express')
-var app = express()
+var a = express()
 
-app.get('/', function (req, res) {
+a.get('/', function (req, res) {
   res.send('Hello World!')
 })
 
-app.listen(process.env.PORT || 5000, function () {
+a.listen(process.env.PORT || 5000, function () {
   console.log('Example app listening on port 5000!')
 })

@@ -62,35 +62,35 @@ console.log(calendar_event_template.templates[0]);
 
 var app = apiai("acbaa2a1dc224492be9e3a55548f503a");
 // var responseAPI = response.result.parameters
-
-var request = app.textRequest("cuantos eventos hay para hoy", {
-    sessionId: '<unique session id>'
-});
-
-
-request.on('response', function(response) {
-  var responseAPI = response.result.parameters
-  console.log(responseAPI);
-  console.log(responseAPI['date']);
-  console.log(responseAPI['date-period']);
-  // console.log(responseAPI.date['date-period']);
-  if (responseAPI.time){
-    console.log("tiempo");
-  }else if (responseAPI['date-period']){
-    console.log("date-period");
-  }else if (responseAPI['date']){
-    console.log("date");
-  }
-   console.log("Evento: "+response.result.parameters.Event+"\n" +
-                "tiempo: " + response.result.parameters.time
- );
-});
-
-request.on('error', function(error) {
-   console.log(error);
-});
-
-request.end();
+//
+// var request = app.textRequest("cuantos eventos hay para hoy", {
+//     sessionId: '<unique session id>'
+// });
+//
+//
+// request.on('response', function(response) {
+//   var responseAPI = response.result.parameters
+//   console.log(responseAPI);
+//   console.log(responseAPI['date']);
+//   console.log(responseAPI['date-period']);
+//   // console.log(responseAPI.date['date-period']);
+//   if (responseAPI.time){
+//     console.log("tiempo");
+//   }else if (responseAPI['date-period']){
+//     console.log("date-period");
+//   }else if (responseAPI['date']){
+//     console.log("date");
+//   }
+//    console.log("Evento: "+response.result.parameters.Event+"\n" +
+//                 "tiempo: " + response.result.parameters.time
+//  );
+// });
+//
+// request.on('error', function(error) {
+//    console.log(error);
+// });
+//
+// request.end();
 
 
 // Uncoment this si quieres poner el token por el terminal
@@ -115,7 +115,7 @@ controller.spawn({
   }
 });
 
-controller.on('direct_mention',function(bot,message){
+controller.on(['direct_mention','direct_message'],function(bot,message){
     console.log(message.text);
 
     var request = app.textRequest(message.text, {

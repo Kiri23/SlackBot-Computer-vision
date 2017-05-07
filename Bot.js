@@ -58,7 +58,7 @@ var Botkit = require('botkit');
 var apiai = require ("apiai");
 var calendar_event_template = require('./Calendar-event');
 
-console.log(calendar_event_template.templates[0]);
+// console.log(calendar_event_template.templates[0]);
 
 var app = apiai("acbaa2a1dc224492be9e3a55548f503a");
 console.log("hello heroku");
@@ -246,7 +246,7 @@ controller.hears(["tu"],['direct_message',"mention","direct_mention"],function(b
       bot.reply(message, reply_with_attachments);
 });
 
-controller.hears(['question me'], 'direct_mention', function(bot,message) {
+controller.hears(['question me'], ['direct_mention','direct_message'], function(bot,message) {
 
   // start a conversation to handle this response.
   bot.startConversation(message,function(err,convo) {
@@ -262,7 +262,7 @@ controller.hears(['question me'], 'direct_mention', function(bot,message) {
 
 });
 
-controller.hears(['question'], 'direct_mention', function(bot,message) {
+controller.hears(['question'], ['direct_mention','direct_message'], function(bot,message) {
 
   // start a conversation to handle this response.
   bot.startConversation(message,function(err,convo) {
@@ -363,7 +363,7 @@ controller.hears(['question'], 'direct_mention', function(bot,message) {
 });
 
 
-controller.hears('interactive', 'direct_mention', function(bot, message) {
+controller.hears('interactive', ['direct_mention','direct_message'], function(bot, message) {
 
     bot.reply(message, {
         attachments:[
@@ -398,7 +398,7 @@ controller.hears('interactive', 'direct_mention', function(bot, message) {
 });
 
 
-controller.hears('cli', 'direct_mention', function(bot, message) {
+controller.hears('cli', ['direct_mention','direct_message'], function(bot, message) {
 
 bot.startConversation(message, function(err, convo) {
 
@@ -487,7 +487,7 @@ bot.startConversation(message, function(err, convo) {
 
 });
 
-controller.hears('button2', 'direct_mention', function(bot, message) {
+controller.hears('button2', ['direct_mention','direct_message'], function(bot, message) {
         bot.reply(message,
           {
             "attachments": [
@@ -504,7 +504,7 @@ controller.hears('button2', 'direct_mention', function(bot, message) {
 
 });
 
-controller.hears('button3', 'direct_mention', function(bot, message) {
+controller.hears('button3', ['direct_mention','direct_message'], function(bot, message) {
         bot.reply(message,
           {
     "attachments": [
@@ -535,7 +535,7 @@ controller.hears('button3', 'direct_mention', function(bot, message) {
 });
 
 
-controller.hears('button4', 'direct_mention', function(bot, message) {
+controller.hears('button4', ['direct_mention','direct_message'], function(bot, message) {
         bot.reply(message,
           {
               "attachments": [
@@ -556,7 +556,7 @@ controller.hears('button4', 'direct_mention', function(bot, message) {
 
 });
 
-controller.hears('menu', 'direct_mention', function(bot, message) {
+controller.hears('menu', ['direct_mention','direct_message'], function(bot, message) {
         bot.reply(message,
           {
               "text": "I hope the tour went well, Mr. Wonka.",

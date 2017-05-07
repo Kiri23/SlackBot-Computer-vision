@@ -600,3 +600,22 @@ a.get('/', function (req, res) {
 a.listen(process.env.PORT || 5000, function () {
   console.log('Example app listening on port 5000!')
 })
+
+// Prevent your app from sleeping in heroku
+var http = require("http");
+var countTime = 0
+
+setInterval(function() {
+   // this is the callback this function will run every 28 minutes
+    countTime = countTime + 1;
+    if(countTime <=30){
+    http.get("http://codetrotterslackbot.herokuapp.com");
+    console.log("countTime",countTime);
+ }else if (countTime >=30 && countTime <= 60){          // else si es mayor que 30
+   console.log("Do Nothing pasaron las 14 horas del dyno");
+   console.log("countTime",countTime);
+ }else if (countTime > 60) { // ya paso un dia rese hour dyno
+   countTime = 0
+   console.log("restoring dyno hours");
+ }
+}, 1680000); // every 28 minutes (1,680,000)

@@ -56,8 +56,8 @@ This bot demonstrates many of the core features of Botkit:
 // Library to interact with the slack api
 var Botkit = require('botkit');
 var apiai = require ("apiai");
-var calendar_event_template = require('./Calendar-event');
-
+// to make the http request to the microsoft vision api
+var request = require('request');
 // console.log(calendar_event_template.templates[0]);
 
 var app = apiai("acbaa2a1dc224492be9e3a55548f503a");
@@ -117,6 +117,62 @@ controller.spawn({
   }
 });
 
+// Node.JS Cognitive service vision API
+// Set the headers
+
+function visionAPI(url,bot,message) {
+  console.log("la url:",url);
+  var options = { method: 'POST',
+    url: 'https://westus.api.cognitive.microsoft.com/vision/v1.0/analyze',
+    qs:
+     { visualFeatures: 'Description',
+       language: 'en',
+       'subscription-key': '943d9ab6ed3a4932809eeaf28c641f34' },
+    headers:
+     { 'postman-token': '3c29295d-ea88-207e-7f27-89c8dc6ae6f0',
+       'cache-control': 'no-cache',
+       'content-type': 'application/json' },
+    body: { url: url.toString() },
+    json: true };
+
+    request(options, function (error, response, body) {
+        // console.log("body",body);
+        var prediction = body.description.captions[0].text
+        var confidence = body.description.captions[0].confidence * 100
+        console.log(prediction);
+        console.log(confidence);
+        var messageSent = "I think this is `"+prediction+ "` and I am `"+confidence+"`% sure";
+        bot.reply(message,messageSent)
+    });
+}
+
+//
+// request(options, function (error, response, body) {
+//   if (error) throw new Error(error);
+//   // var parsedData = JSON.parse(response);
+//   var str = "Describe this image         http://i.imgur.com/MCiibwX.jpg";
+//   var stru = str.toUpperCase();
+//   var strw = str.replace(/ +/g, "");
+//   console.log(strw);
+//   var res = str.slice(19);
+//   // console.log(res);
+//   var res2 = str.match(/(https?:\/\/[^\s]+)/g);
+//   // console.log(res2[0]);
+//   str2 = "Describe this image http://i.imgur.com/MCiibwX.jpg "
+//   stru2 = str2.toUpperCase()
+//   strw2 = str.replace(/ +/g, "");
+//   console.log(strw2);
+//   if (strw.localeCompare(strw2) == 0){
+//     console.log("son igules");
+//   }else{
+//     console.log("algo fallo");
+//   }
+//
+//   console.log(body.description.captions[0].text);
+//
+//   // http://i.imgur.com/MCiibwX.jpg
+// });
+
 controller.on(['direct_mention','direct_message'],function(bot,message){
     console.log(message.text);
 
@@ -160,10 +216,67 @@ controller.on(['direct_mention','direct_message'],function(bot,message){
 
 });
 
+controller.on(['direct_mention','direct_message'],function(bot,message){
+    var baseStr = "Describe this image"
+    var baseStr2 = baseStr.toUpperCase()
+    var baseStr3 = baseStr2.replace(/ +/g, "");
+    // console.log("base string 3 ",baseStr3);
+
+    var compareStr = message.text
+    var compareStr2 = compareStr.toUpperCase()
+    var compareStr3 = compareStr2.replace(/ +/g, "");
+
+    // reverse String
+    var reverse = compareStr3.split("");
+    // console.log("reverse",reverse);
+    var reverse2 = reverse.reverse();
+    var reverse3 = reverse2.join("");
+    var strUrlR = reverse3.split(">")
+    // console.log(strUrlR[1]);
+
+    // console.log("reverse ", reverse3);
+    // reverse again
+    var reverse4 = reverse2.reverse();
+    var reverse5 = reverse4.join("");
+    // console.log("bien ",reverse5);
+
+    // URL Bien
+    var strUrl = strUrlR[1].split("");
+    // console.log(strUrl);
+    var strUrl2 = strUrl.reverse();
+    var strUrl2 = strUrl.join("");
+    console.log("url derecha ",strUrl2);
+    var compareStr4 = strUrl2.slice(0,17);
+    console.log(compareStr4);
+    console.log(baseStr3);
+
+
+    // console.log(compareStr3);
+    if (baseStr3.localeCompare(compareStr4) == 0){
+      // bot.reply(message,"son iguales")
+      console.log("llegamos al loop");
+      // console.log(compareStr3);
+      var res2 = compareStr3.match(/(HTTPS?:\/\/[^\s]+)/g);
+      // console.log(res2);
+      var res3 = res2[0].slice(0,-1);
+      console.log(res3.toString());
+      var containHttp = res3.toString().includes('HTTP',0);
+      console.log(containHttp);
+      if (containHttp){
+          console.log("llegue procima llamada bot");
+
+          visionAPI(res3.toLowerCase(),bot,message);
+      }else{
+        bot.reply(message,"Humm?. Parece que eso no es una URL. Trate de nuevo")
+      }
+    }
+
+});
+
 // Primer parametro que tu quieres que el bot responda al mensaje. Segundo parametro - en donde tu quieres que bot "escuche" al mensaje del primer parametro.
 controller.hears(['hello','hi'],['direct_message','direct_mention','mention'],function(bot,message) {
     // El bot envia el mensaje que tu le especifique en el segundo parametro
-    console.log("helooo");
+    console.log("helooo pqq");
     bot.reply(message,"Hello.");
 });
 

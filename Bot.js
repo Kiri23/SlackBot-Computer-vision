@@ -121,7 +121,7 @@ controller.spawn({
 // Set the headers
 
 function visionAPI(url,bot,message) {
-  console.log("la url:",url);
+  // console.log("la url:",url);
   var options = { method: 'POST',
     url: 'https://westus.api.cognitive.microsoft.com/vision/v1.0/analyze',
     qs:
@@ -139,8 +139,8 @@ function visionAPI(url,bot,message) {
         // console.log("body",body);
         var prediction = body.description.captions[0].text
         var confidence = body.description.captions[0].confidence * 100
-        console.log(prediction);
-        console.log(confidence);
+        // console.log(prediction);
+        // console.log(confidence);
         var messageSent = "I think this is `"+prediction+ "` and I am `"+confidence+"`% sure";
         bot.reply(message,messageSent)
     });
@@ -174,7 +174,7 @@ function visionAPI(url,bot,message) {
 // });
 
 controller.on(['direct_mention','direct_message'],function(bot,message){
-    console.log(message.text);
+    console.log(message.text + "mensaje");
 
     var request = app.textRequest(message.text, {
         sessionId: '<unique session id>'
@@ -217,10 +217,9 @@ controller.on(['direct_mention','direct_message'],function(bot,message){
 });
 
 controller.on(['direct_mention','direct_message'],function(bot,message){
-    var baseStr = "Describe this image"
-    var baseStr2 = baseStr.toUpperCase()
+    var baseStr = "Describe this image" ;
+    var baseStr2 = baseStr.toUpperCase();
     var baseStr3 = baseStr2.replace(/ +/g, "");
-    // console.log("base string 3 ",baseStr3);
 
     var compareStr = message.text
     var compareStr2 = compareStr.toUpperCase()
@@ -241,29 +240,32 @@ controller.on(['direct_mention','direct_message'],function(bot,message){
     // console.log("bien ",reverse5);
 
     // URL Bien
-    var strUrl = strUrlR[1].split("");
-    // console.log(strUrl);
-    var strUrl2 = strUrl.reverse();
-    var strUrl2 = strUrl.join("");
-    console.log("url derecha ",strUrl2);
-    var compareStr4 = strUrl2.slice(0,17);
-    console.log(compareStr4);
-    console.log(baseStr3);
+    console.log(strUrlR[0]);
+    if(strUrlR[1]){
+       var strUrl = strUrlR[1].split("");
+       // console.log(strUrl);
+       var strUrl2 = strUrl.reverse();
+       var strUrl2 = strUrl.join("");
+       console.log("url derecha ",strUrl2);
+       var compareStr4 = strUrl2.slice(0,17);
+     }
+    // console.log(compareStr4);
+    // console.log(baseStr3);
 
 
     // console.log(compareStr3);
     if (baseStr3.localeCompare(compareStr4) == 0){
       // bot.reply(message,"son iguales")
-      console.log("llegamos al loop");
+      // console.log("llegamos al loop");
       // console.log(compareStr3);
       var res2 = compareStr3.match(/(HTTPS?:\/\/[^\s]+)/g);
       // console.log(res2);
       var res3 = res2[0].slice(0,-1);
-      console.log(res3.toString());
+      // console.log(res3.toString());
       var containHttp = res3.toString().includes('HTTP',0);
-      console.log(containHttp);
+      // console.log(containHttp);
       if (containHttp){
-          console.log("llegue procima llamada bot");
+          // console.log("llegue procima llamada bot");
 
           visionAPI(res3.toLowerCase(),bot,message);
       }else{
@@ -274,7 +276,7 @@ controller.on(['direct_mention','direct_message'],function(bot,message){
 });
 
 // Primer parametro que tu quieres que el bot responda al mensaje. Segundo parametro - en donde tu quieres que bot "escuche" al mensaje del primer parametro.
-controller.hears(['hello','hi'],['direct_message','direct_mention','mention'],function(bot,message) {
+controller.hears(['hello','hii'],['direct_message','direct_mention'],function(bot,message) {
     // El bot envia el mensaje que tu le especifique en el segundo parametro
     console.log("helooo pqq");
     bot.reply(message,"Hello.");

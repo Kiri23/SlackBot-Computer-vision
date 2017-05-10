@@ -53,14 +53,16 @@ This bot demonstrates many of the core features of Botkit:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+
 // Library to interact with the slack api
 var Botkit = require('botkit');
 var apiai = require ("apiai");
 // to make the http request to the microsoft vision api
 var request = require('request');
-// console.log(calendar_event_template.templates[0]);
 
-var app = apiai("acbaa2a1dc224492be9e3a55548f503a");
+// I use APIAI for natural language processing.
+   // The bot will know what you are asking him without to do validation to look for specific word in the chat.
+var app = apiai("<USE-YOUR-OWN-APIAI-KEY");
 console.log("hello heroku");
 // console.log(app);
 // var responseAPI = response.result.parameters
@@ -105,11 +107,19 @@ var controller = Botkit.slackbot({
  debug: false,
  stats_optout: true,
  interactive_replies: true
-});
+}).configureSlackApp(
+  {
+    clientId: "YOUR OWN CLIENT ID ",
+    clientSecret: "YOUR OWN CLIENT SERET",
+    scopes: ['bot'],
+  }
+);
 
-// Connect to the Slack Bot
+// Connect to the Slack Bot -
+// This token in combination with the computer vision api token is  the only thing that you need if you want to test the computer vision api you can ignore the next tree if you only want to test the computer vision api
+// This token connect to your slack team and you can start interacting with the bot
 controller.spawn({
-  token:"xoxb-179220163349-IUevu7WzWV1M9TXZ7HYHjHQB"
+  token:"YOUR TOKEN "
   //token: process.env.token
 }).startRTM(function(err) {
   if (err) {
@@ -120,6 +130,7 @@ controller.spawn({
 // Node.JS Cognitive service vision API
 // Set the headers
 
+// This method made a call to the Computer vision to make a prediction about the image
 function visionAPI(url,bot,message) {
   // console.log("la url:",url);
   var options = { method: 'POST',
@@ -127,14 +138,15 @@ function visionAPI(url,bot,message) {
     qs:
      { visualFeatures: 'Description',
        language: 'en',
-       'subscription-key': '943d9ab6ed3a4932809eeaf28c641f34' },
+       'subscription-key': 'YOUR COMPUTER VISION API TOKEN ' },
     headers:
-     { 'postman-token': '3c29295d-ea88-207e-7f27-89c8dc6ae6f0',
+     { 'postman-token': 'YOUR TOKEN ',
        'cache-control': 'no-cache',
        'content-type': 'application/json' },
     body: { url: url.toString() },
     json: true };
 
+    // Make Http post call
     request(options, function (error, response, body) {
         // console.log("body",body);
         var prediction = body.description.captions[0].text
@@ -173,6 +185,56 @@ function visionAPI(url,bot,message) {
 //   // http://i.imgur.com/MCiibwX.jpg
 // });
 
+// set up a botkit app to expose oauth and webhook endpoints
+controller.setupWebserver(5005,function(err,webserver) {
+
+  // set up web endpoints for oauth, receiving webhooks, etc.
+  controller
+    .createHomepageEndpoint(controller.webserver)
+    .createOauthEndpoints(controller.webserver,function(err,req,res) { "https://bots.api.ai/slack/69052107-e13e-4c6c-9a72-446a8450a7f7/webhook"})
+    .createWebhookEndpoints(controller.webserver);
+
+});
+
+// When a user say this run the callback function
+controller.on('interactive_message_callback', function(bot, message) {
+  // Interactive message
+  bot.replyInteractive(message, {
+       text: '...',
+       attachments: [
+           {
+               title: 'My buttons',
+               callback_id: '123',
+               attachment_type: 'default',
+               actions: [
+                   {
+                       "name":"yes",
+                       "text": "Yes!",
+                       "value": "yes",
+                       "type": "button",
+                   },
+                   {
+                      "text": "No!",
+                       "name": "no",
+                       "value": "delete",
+                       "style": "danger",
+                       "type": "button",
+                       "confirm": {
+                         "title": "Are you sure?",
+                         "text": "This will do something!",
+                         "ok_text": "Yes",
+                         "dismiss_text": "No"
+                       }
+                   }
+               ]
+           }
+       ]
+   });
+
+});
+
+
+// Make a call to the natural lnaguage processing api
 controller.on(['direct_mention','direct_message'],function(bot,message){
     console.log(message.text + "mensaje");
 
@@ -216,37 +278,51 @@ controller.on(['direct_mention','direct_message'],function(bot,message){
 
 });
 
+// Where the magig happen for the prediction of a image
 controller.on(['direct_mention','direct_message'],function(bot,message){
+    // First verify if the text enter by the user in the chat is the same as this Base string
     var baseStr = "Describe this image" ;
+    // avoid case sensitive
     var baseStr2 = baseStr.toUpperCase();
+    // replace any white space between word
     var baseStr3 = baseStr2.replace(/ +/g, "");
 
+    // message.text - is the message enter by the user in the chat repeat the same procces as above
     var compareStr = message.text
+    // Todo fix - dont convert the url to uppercase. The url has to be the same as the user enter for the computer vision to procces
     var compareStr2 = compareStr.toUpperCase()
+    // replace any white space
     var compareStr3 = compareStr2.replace(/ +/g, "");
 
-    // reverse String
+    // reverse String to eliminate the URL and made the if statement to check is this sentence contain "Describe this image". If this sentence contain "describe this image" the do another validation to check if it contain an url. then make the call to the Computer vision api. The below line convert the string to a array
     var reverse = compareStr3.split("");
     // console.log("reverse",reverse);
+    // reverse the string with a built in method
     var reverse2 = reverse.reverse();
+    // Join again the string from an array
     var reverse3 = reverse2.join("");
+    // eliminate the part that contain an url. The url will always contain a "< and > " because that is how slack return the message enter by the user
     var strUrlR = reverse3.split(">")
     // console.log(strUrlR[1]);
 
     // console.log("reverse ", reverse3);
-    // reverse again
+    // reverse again the url
     var reverse4 = reverse2.reverse();
+    // make a string out of an array of string.Note the url is still in reverse order.
     var reverse5 = reverse4.join("");
     // console.log("bien ",reverse5);
 
-    // URL Bien
-    console.log(strUrlR[0]);
+    // URL Bien. This part will put the url in the right order.The code above check if there is a string in the 'strUrlR[1]'.I do this for validation purpose if the user dont inted to use the computer vision api the code below will scratch because strUrlR[1] is null
     if(strUrlR[1]){
+      // Convert the string to array
        var strUrl = strUrlR[1].split("");
        // console.log(strUrl);
+       // Reverse the string. Is going to have this order: https:// ....
        var strUrl2 = strUrl.reverse();
+       // Make the string out of an array
        var strUrl2 = strUrl.join("");
        console.log("url derecha ",strUrl2);
+       // eliminate the last part of the string that is a "<". In line 305 I remove the ">" part of the string. That's one of the purpose why I rverse the string.
        var compareStr4 = strUrl2.slice(0,17);
      }
     // console.log(compareStr4);
@@ -254,19 +330,23 @@ controller.on(['direct_mention','direct_message'],function(bot,message){
 
 
     // console.log(compareStr3);
+    // Compare the string to chech if they are equals
     if (baseStr3.localeCompare(compareStr4) == 0){
       // bot.reply(message,"son iguales")
       // console.log("llegamos al loop");
       // console.log(compareStr3);
+      // regex expression for verify for a https
       var res2 = compareStr3.match(/(HTTPS?:\/\/[^\s]+)/g);
       // console.log(res2);
+      // Validation Check
       var res3 = res2[0].slice(0,-1);
       // console.log(res3.toString());
+      // Validation again to check if the string contain an HTTP
       var containHttp = res3.toString().includes('HTTP',0);
       // console.log(containHttp);
       if (containHttp){
           // console.log("llegue procima llamada bot");
-
+          // Make the Computer vision API
           visionAPI(res3.toLowerCase(),bot,message);
       }else{
         bot.reply(message,"Humm?. Parece que eso no es una URL. Trate de nuevo")
